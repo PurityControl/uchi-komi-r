@@ -2,19 +2,19 @@
 
 * Subsetting and Vectors
 
-Subsetting is selecting parts of a vector you are interested in.
+Subsetting is selecting the parts of a vector you are interested in.
 
 *** Key Point
-To subset you pass in a vector of the element you want
+To subset you pass in a vector of the elements you want
 
-The vectors you pass in come in four flavours
+The vectors you can pass in come in four flavours
 - logical vectors
 - vectors of positive integers
 - vectors of negative integers
 - vectors of character strings
 
 ** Logical Vectors
-True and False act as a mask where only TRUE vals show through.
+True and False act as a mask where only the TRUE vals show through.
 
 =is.na(x)=
 will give a vector where all NA values are True.
@@ -40,9 +40,9 @@ exists.
 
 If you go below the bounds you get a numeric(0) value
 
-if you go aboe the bond you get an NA value
+if you go above the bound you get an NA value
 
-for x <- 1:10
+eg. for x <- 1:10
 
 =x[0] => numeric(0)=
 
@@ -69,7 +69,7 @@ apply the - operator to each element in the vector
 
 =x[-c(2, 10)]=
 
-** Vectos of character strings
+** Vectors of character strings
 If a vector is named we can access the values we want by passing in a
 vector of names.
 
@@ -77,7 +77,7 @@ We can see if a vector has names by using the names function.
 
 =names(vect)=
 
-If is doesn't we can give the vector names if we want to.
+If it doesn't we can give the vector names if we want to.
 
 =names(vect) <- c("foo", "bar", "baz")=
 
