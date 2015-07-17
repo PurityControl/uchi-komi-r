@@ -1,0 +1,7 @@
+#+TITLE: Retrospective for multiples of 3 and 5.
+
+Simple first implmentation create a vector of number 1 through 999.
+Then sum a subset of the vector using boolean logic to create the subset.
+
+TODO
+Think about how to start unit testing.
