@@ -1,1 +1,86 @@
 #+TITLE: Dai-gokyo (Group 5) - Documentation
+
+* Subsetting and Vectors
+
+Subsetting is selecting the parts of a vector you are interested in.
+
+*** Key Point
+To subset you pass in a vector of the elements you want
+
+The vectors you can pass in come in four flavours
+- logical vectors
+- vectors of positive integers
+- vectors of negative integers
+- vectors of character strings
+
+** Logical Vectors
+True and False act as a mask where only the TRUE vals show through.
+
+=is.na(x)=
+will give a vector where all NA values are True.
+
+By using the not operator (!) you can reverse this and get only elements that
+have a value.
+
+=x[!is.na(x)]=
+
+we can subset on other conditions using boolean logic.
+
+=x[x>6]=
+
+The above examples can be combined.
+
+=x[!is.na(x) & x > 6]=
+
+*** In R vectors are 1 based
+Remember in R vectors are 1 based and not zero based.
+
+You are responsible for ensuring that the index of the vector you access
+exists.
+
+If you go below the bounds you get a numeric(0) value
+
+if you go above the bound you get an NA value
+
+eg. for x <- 1:10
+
+=x[0] => numeric(0)=
+
+=x[11] => NA=
+
+** Vectors of positive integers
+Passing in a vector of positive integers allows you to pass in non contigous
+indices.
+
+eg. to select the 3rd, 5th and 7th vector
+
+=x[c(3, 5, 7)]=
+
+** Vectors of negative integers
+If you want all items of a vector except a few you can pass in a negative
+vector of all the indices you don't want.
+
+eg. to get all items of a vector except the 2nd and 10th element
+
+=x[c(-2, -10)]=
+
+alternatively you can put the - in front of the call to combine(); this will
+apply the - operator to each element in the vector
+
+=x[-c(2, 10)]=
+
+** Vectors of character strings
+If a vector is named we can access the values we want by passing in a
+vector of names.
+
+We can see if a vector has names by using the names function.
+
+=names(vect)=
+
+If it doesn't we can give the vector names if we want to.
+
+=names(vect) <- c("foo", "bar", "baz")=
+
+Then we can access the vector using a vector of character strings
+
+=vect[c("foo", "baz")]=
