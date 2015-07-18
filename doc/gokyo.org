@@ -84,3 +84,52 @@ If it doesn't we can give the vector names if we want to.
 Then we can access the vector using a vector of character strings
 
 =vect[c("foo", "baz")]=
+
+* Matrices and Data Frames
+
+Matrices contain a single type of data.
+
+Data Frames can contain mixed data.
+
+Another way of thinking about this is that a matrix is a vector of vectors,
+but a data frame is a vector of lists.
+
+A matrix is just a vector with dimensions
+
+=my_vector <- 1:20=
+
+=length(my_vector)             => 20=
+
+=dim(my_vector)                => NULL=
+
+=dim(my_vector) <- c(4, 5)=
+
+=class(my_vector)              => Matrix=
+
+you can also see the dim property using the =attributes()= function
+
+Matrices are declared by row then column.
+You can create a matrix directly using the =matrix()= function
+
+=matrix(1:20, 4, 5)=
+
+You can use the =cbind()= function to add an additional column to a matrix
+where the column to be added is a vector.
+
+=cbind(vector_col, matrix)=
+
+Using cbind on a matrix with different data types will cause the new matrix
+to be cast to a data type that is common to both the column being added and
+the old matrix. This is usually a character string.
+
+To keep both items as their original data type, use a data frame.
+
+=data.frame(vector_col, matrix)=
+
+data.frame can take as many arguments as items needed to be joined.
+
+You can assign names to the data frame columns by passing in a vector of
+names ot the =colnames()= function.
+
+=colnames(my_data) <- c("col1", "col2", "col3")=
+
