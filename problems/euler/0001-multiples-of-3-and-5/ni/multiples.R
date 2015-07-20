@@ -1,0 +1,10 @@
+#!/usr/bin/env Rscript
+
+x <- 1:999
+sum(x[x%%3 == 0 | x%%5 == 0])
+
+multiples <- function() {
+  x <- 1:999
+  sum(x[x%%3 == 0 | x%%5 == 0])
+}
+
