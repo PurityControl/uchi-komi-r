@@ -10,6 +10,11 @@ Then to use it you simply reference the library
 
 =library("RUnit")=
 
+** Resources
+
+There is a webpage discussing the RUnit and testthat library at
+[[http://www.johnmyleswhite.com/notebook/2010/08/17/unit-testing-in-r-the-bare-minimum/]]
+
 ** Mac OS X
 
 RUnit requires X11 to run. Yosemite does not come with X11 installed.
