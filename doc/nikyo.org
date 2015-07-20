@@ -1,1 +1,32 @@
 #+TITLE: Dai-nikyo (Group 2) - Testing
+
+* RUnit
+
+RUnit can be installed using the command
+
+=install.package("RUnit")=
+
+Then to use it you simply reference the library
+
+=library("RUnit")=
+
+** Resources
+
+There is a webpage discussing the RUnit and testthat library at
+[[http://www.johnmyleswhite.com/notebook/2010/08/17/unit-testing-in-r-the-bare-minimum/]]
+
+** Mac OS X
+
+RUnit requires X11 to run. Yosemite does not come with X11 installed.
+
+See [[https://support.apple.com/en-us/HT201341][here]].
+
+Apple originally created the XQuartz project to develop and support X11 on
+OS X.
+
+To Run RUnit you will need to install XQuartx.
+
+You can get the dmg file [[http://xquartz.macosforge.org/landing/][here]].
+
+Once XQuartz is installed you should be able to use RUnit.
+
