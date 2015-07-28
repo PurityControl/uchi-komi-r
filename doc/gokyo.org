@@ -133,3 +133,42 @@ names ot the =colnames()= function.
 
 =colnames(my_data) <- c("col1", "col2", "col3")=
 
+* Logic
+R has the usual logic values TRUE, FALSE, ==, !=, <, <=, >, >=
+
+** OR
+Or can be in the form of =|= or =||=
+
+The singular operates over each element of the vector returning a vector of
+booleans.
+
+The double bar returns a result based on an or operation of the first vector
+element only.
+
+** And
+And can be in the form of =&= or =&&=
+
+The singular operates over each element of the vector returning a vector of
+booleans.
+
+The double ampersand returns a result based on an and operation of the 
+first vector element only.
+
+** Addtional Functions
+=isTRUE()= takes one argument and if it is true returns true otherwise returns
+false.
+
+=indentical()= checks two object for exaxt Equality.
+
+=xor()= will xor its arguments.
+
+=which()= returns a vector of indices for which the expression holds true
+
+~which(x <= 2)~ # returns a vector of indices where the vector x is less than
+or equal to two.
+
+=any()= returns true if any of the elements in the vector expression is true.
+
+=all()= returns true if all of the elelement in the vector expression are true.
+
+
