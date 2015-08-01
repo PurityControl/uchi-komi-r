@@ -1,5 +1,70 @@
 #+TITLE: Dai-gokyo (Group 5) - Documentation
 
+* Basics
+assignment is done using the ~<-~ operator
+
+~x <- 10~
+
+vectors are created with the ~c()~ method
+
+~x <- c(3, 5, 7)~
+
+if you perform an expression on a vector it applies that expression to each
+element in the vector and returns a new vector with those values
+
+#+BEGIN_SRC R
+x <- c(3, 5, 7)
+x + 1
+=>[4, 6, 8]
+#+END_SRC
+
+What is actually happening here is a vector operation and in order to do this
+R casts the 1 in the addition to a vector of 1's in order to be able to do
+the calculation
+
+#+BEGIN_SRC R
+# What happens behind the scenes
+x <- c(3, 5, 7)
+x + 1
+[3, 5, 7] + [1, 1, 1]
+=>[4, 6, 8]
+#+END_SRC
+
+If you add to different size vectors the smaller vector is repeated until
+it is the same size of the larger vector.
+
+If the vectors aren't wholly divisible the operation will still happen but
+R will give a warning letting you know.
+
+#+BEGIN_SRC R
+c(1, 2, 3) + c(1,2)
+[1] 2 4 4
+Warning message:
+In c(1, 2, 3) + c(1, 2) :
+  longer object length is not a multiple of shorter object length
+#+END_SRC
+
+** HELP
+The following methods are useful for finding help in R
+
+~help()~ or its alias ~?~
+
+using ~?~ will pull up the help documentation for the method in question.
+If the method being queried is a keyword then it will need to be quoted.
+
+#+BEGIN_SRC R
+?lapply
+# however these need quotes
+?'for'
+?'?'
+?'??'
+#+END_SRC
+ 
+~help.search()~ or its alias ~??~
+
+Using ~??~ will search the documentation for all help that has the search
+term in its content and return a list of search topics that match.
+
 * Subsetting and Vectors
 
 Subsetting is selecting the parts of a vector you are interested in.
