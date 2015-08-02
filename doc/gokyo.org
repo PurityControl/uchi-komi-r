@@ -93,15 +93,15 @@ for creating a temporary work area to be cleaned up later.
 
 ~file.path()~ will create a platform dependent filepath from the arguments.
 
-You can chain commands together, to create a nested directory you will need
+You can chain commands together. To create a nested directory you will need
 to pass the ~recursive = TRUE~ to ~dir.create()~
 #+BEGIN_SRC R
 dir.create(file.path('testdir2', 'testdir3'), recursive = TRUE)
 # equivalent to mkdir -p testdir2/testdir3
 #+END_SRC
 
-~unlink()~ will delete a file or directory. If you need to remove a directory
-and by association all its contents you need to let R know this is your
+~unlink()~ will delete a file or directory. If you need to remove a directory,
+and by association all its contents, you need to let R know this is your
 intention. You do this by passing in ~recursive = TRUE~ to the function.
 
 * Subsetting and Vectors
