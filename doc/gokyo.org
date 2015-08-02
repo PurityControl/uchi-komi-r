@@ -65,6 +65,45 @@ If the method being queried is a keyword then it will need to be quoted.
 Using ~??~ will search the documentation for all help that has the search
 term in its content and return a list of search topics that match.
 
+* Workspace and Files
+~getwd()~ returns the current working directory
+
+~ls()~ will list all objects in your current workspace.
+
+~dir()~ or ~list.files()~ will show the files in your current working
+directory.
+
+~args(fn)~ will tell you what arguments fn takes.
+
+~dir.create(dirname)~ will create a directory with dirname. This is useful
+for creating a temporary work area to be cleaned up later.
+
+~setwd(dirname)~ sets the current working directory to dirname.
+
+~file.create(filename)~ will create a file named filename.
+
+~file.exists(filename)~ returns TRUE if filename exists.
+
+~file.info(filename)~ returns detailed information on a file. You can use the
+'$' vector operator to access specific information ~file.info(filename)$mode~
+
+~file.rename(from, to)~ will rename a file.
+
+~file.copy(from, to)~ will copy a file.
+
+~file.path()~ will create a platform dependent filepath from the arguments.
+
+You can chain commands together, to create a nested directory you will need
+to pass the ~recursive = TRUE~ to ~dir.create()~
+#+BEGIN_SRC R
+dir.create(file.path('testdir2', 'testdir3'), recursive = TRUE)
+# equivalent to mkdir -p testdir2/testdir3
+#+END_SRC
+
+~unlink()~ will delete a file or directory. If you need to remove a directory
+and by association all its contents you need to let R know this is your
+intention. You do this by passing in ~recursive = TRUE~ to the function.
+
 * Subsetting and Vectors
 
 Subsetting is selecting the parts of a vector you are interested in.
