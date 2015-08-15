@@ -1,0 +1,118 @@
+#+TITLE: Manipulating data with dplyr
+
+Information set out here is heavily borrowed from the Swirl package
+Getting and Cleaning Data.
+
+dplyr gives you the same set of tools to work with
+- data frames
+- data tables
+- databases
+- multi dimensional array
+
+load the dplyr package with ~library(dplyr)~
+
+dplyr should be at least version 0.4.0 check this with ~packageVersion("dplyr")~
+
+to convert your existing type (eg. data frame) into a dplyr data frame table
+
+~my_tbl_df <- tbl_df(my_data_Frame)~
+
+The goal of dplyr is to have small functions that do one thing well.
+Dplyr supplies five verbs that cover most fundamental tasks.
+- select()
+- filter()
+- arrange()
+- mutate()
+- summarize()
+
+** Select
+~select(my_tbl_df, col_name1, col_name2,...)~
+
+*** Order
+Columns are ordered in the order presented in the select method call.
+
+You can use the sequence operator ~:~ on column names to select contiguous
+columns.
+
+Column Names can be referenced directly rather than having to use the
+traditional syntax ie. ~col_name~ not ~my_df$col_name~.
+
+~select(my_tbl_df, col_start_name:col_end_name)~
+
+This order can be reversed if the columns are switched.
+
+~select(my_tbl_df, col_end_name:col_start_name)~
+
+*** Removal of columns
+You can select the columns you want to remove instead of keep.
+
+~select(my_tbl_df, -col_name_unwanted)~
+
+You can remove contigous column using the ~-~ operator on a vector trick
+
+~select(my_tbl_df, -(col_start_name:col_end_name))~
+
+** Filter
+Where select refines you column selection filter refines your row selection.
+
+~filter(my_tbl_df, col_name == "SearchString")~
+
+*** And
+You can chain criteria as an and by adding multiple arguments to the function.
+
+~filter(my_tbl_df, col_name == "SearchString", other_col == "AnotherString")~
+
+*** Comparators
+All the comparsion filters can be used ~<, >, <=, >=, ==, !=~
+
+For more information ~?Comparators~
+
+*** OR
+You can use OR criteria passsing in to conditions separated by ~|~ as a
+single argument.
+
+~filter(my_tbl_df, col_name == "Criteria1" | col_name == "Criteria2")~
+
+*** NA
+You can filter out NA's in columns
+
+~filter(my_tbl_df, !is.na(col_name))~
+
+** Order
+You can order rows (equivalent to an sql order) with ~arrange()~
+
+~arrange(my_tbl_df, sorted_col)~
+
+*** Reverse Order
+This can be reversed using ~desc()~
+
+~arrange(my_tbl_df, desc(sorted_col))~
+
+*** Multiple Criteria
+There can be multiple sort criteria
+
+~arrange(my_tbl_df, col1, desc(col2), col3)~
+
+** Mutate
+You can modify columns into new columns using ~mutate()~
+
+~mutate(my_tbl_df, size_mb = size / 2^20)~
+
+*** Earlier column references
+You can refer to earlier created columns in later arguments
+
+~mutate(my_tbl_df, size_mb = size / 2^20, size_gb = size_mb / 2^10)~
+
+** Summarize
+You can collapse a summary of the dataset into a single row using ~summarize()~
+
+#+BEGIN_SRC R
+~summarize(my_table_df, avg_bytes = mean(size))~
+
+  avg_bytes
+1  844086.5
+#+END_SRC
+
+~summarize()~ is most useful when working with data that has been grouped
+by the values of a particular variable.
+
