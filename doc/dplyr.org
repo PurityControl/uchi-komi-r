@@ -116,3 +116,86 @@ You can collapse a summary of the dataset into a single row using ~summarize()~
 ~summarize()~ is most useful when working with data that has been grouped
 by the values of a particular variable.
 
+
+* Grouping and Chaining with dplyr
+
+Use ~group_by()~ to aggregate rows by a certain property.
+
+~group_by(my_tbl_df, col_name)~
+
+Summarize is then much more useful when summarizing by groups.
+
+~by_col <- group_by(my_tbl_df, col_name)~
+~summarize(by_col, mean(col_name))~
+
+Useful parameter to pass into summarize are ~n()~ and ~n_distinct()~
+- ~n()~ gives the number of values in the summary
+#+BEGIN_SRC R
+summarize(by_col, mean(col_name), count = n())
+#+END_SRC
+- ~n_distinct(col_name)~ gives the number of distinct values in col_name
+#+BEGIN_SRC R
+summarize(by_col, count = n(), unique = n_distinct(col_name))
+#+END_SRC
+
+** Quantile
+Quantile will take a decimal and return a number which represents the value
+that represent the decimal position in the distribution curve.
+
+~quantile(data_frame$col_name, probs = 0.5)~ will give the mid value of the column
+according to the columns distribution curve.
+
+** View
+The package dplyr only shows a summary of its data; the first 10 items of the
+data.
+
+To see all the data fro a data table use ~View(my_tbl_df)~
+
+** RM
+To remove a variable from the current scope use ~rm(var)~
+
+** Chaining
+Chaining or Piping is a way to make successive method calls to prevent having
+to create intermediate results and without having to nest method calls in a
+way that is confusing.
+
+The ~%>%~ operator is used for this chaining.
+
+This can replace
+
+#+BEGIN_SRC R
+result <-
+  arrange(
+    filter(
+      summarize(
+        group_by(my_table_df,
+                 col2
+        ),
+        count = n(),
+        unique = n_distinct(col1),
+        countries = n_distinct(sol2),
+        avg_bytes = mean(col3)
+      ),
+      countries > 60
+    ),
+    desc(col1),
+    avg_bytes
+  )
+
+# with
+
+result <-
+  my_table_df %>%
+  group_by(col2) %>%
+  summarize(count = n(),
+            unique = n_distinct(col1),
+            countries = n_distinct(col2),
+            avg_bytes = mean(col3)
+  ) %>%
+  filter(countries > 60) %>%
+  arrange(desc(col1), avg_bytes)
+#+END_SRC
+
+
+
+
