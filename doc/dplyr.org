@@ -125,8 +125,10 @@ Use ~group_by()~ to aggregate rows by a certain property.
 
 Summarize is then much more useful when summarizing by groups.
 
-~by_col <- group_by(my_tbl_df, col_name)~
-~summarize(by_col, mean(col_name))~
+#+BEGIN_SRC
+by_col <- group_by(my_tbl_df, col_name)
+summarize(by_col, mean(col_name))
+#+END_SRC
 
 Useful parameter to pass into summarize are ~n()~ and ~n_distinct()~
 - ~n()~ gives the number of values in the summary
@@ -140,7 +142,7 @@ summarize(by_col, count = n(), unique = n_distinct(col_name))
 
 ** Quantile
 Quantile will take a decimal and return a number which represents the value
-that represent the decimal position in the distribution curve.
+of the decimal position in the distribution curve.
 
 ~quantile(data_frame$col_name, probs = 0.5)~ will give the mid value of the column
 according to the columns distribution curve.
