@@ -71,7 +71,7 @@ Look at the following dataset
 
 This dataset is similar to the first, except now there are two separate
 classes, 1 and 2, and we have total counts for each sex within each class.
-students2 suffers from the same messy data problem of having column 
+The data frame suffers from the same messy data problem of having column 
 headers that are values (male_1, female_1, etc.) and not variable names
 (sex, class, and count).              |
 
