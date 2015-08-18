@@ -221,7 +221,7 @@ my_data_frame %>%
 #+END_SRC
 
 The next stage involve making the values in the test column variables that have
-the grade as their value.
+the grade as their value. This can be done with the ~spread()~ function.
 
 #+BEGIN_SRC R
 my_data_frame %>%
