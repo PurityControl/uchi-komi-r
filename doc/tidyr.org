@@ -71,7 +71,7 @@ Look at the following dataset
 
 This dataset is similar to the first, except now there are two separate
 classes, 1 and 2, and we have total counts for each sex within each class.
-The data frame suffers from the same messy data problem of having column 
+The data frame suffers from the same messy data problem of having column
 headers that are values (male_1, female_1, etc.) and not variable names
 (sex, class, and count).              |
 
@@ -148,9 +148,9 @@ separate(res, sex_class, c("sex", "class"))
 17     B female     2     5
 18     C female     2     8
 19     D female     2     1
-20     E female     2     7 
+20     E female     2     7
 #+END_SRC
- 
+
 ** Chaining with %>%
 
 In order to prevent having to create an intermediate variable for the two
@@ -162,4 +162,105 @@ data_frame %>%
   gather( sex_class, count, -grade ) %>%
   separate( sex_class, c("sex", "class")) %>%
   print
+#+END_SRC
+
+* Variables across rows and columns
+
+A third symptom of messy data is when variables are stored in both rows and
+columns. The following data frame provides an example of this.
+
+#+BEGIN_SRC
+    name    test class1 class2 class3 class4 class5
+1  Sally midterm      A   <NA>      B   <NA>   <NA>
+2  Sally   final      C   <NA>      C   <NA>   <NA>
+3   Jeff midterm   <NA>      D   <NA>      A   <NA>
+4   Jeff   final   <NA>      E   <NA>      C   <NA>
+5  Roger midterm   <NA>      C   <NA>   <NA>      B
+6  Roger   final   <NA>      A   <NA>   <NA>      A
+7  Karen midterm   <NA>   <NA>      C      A   <NA>
+8  Karen   final   <NA>   <NA>      C      A   <NA>
+9  Brian midterm      B   <NA>   <NA>   <NA>      A
+10 Brian   final      B   <NA>   <NA>   <NA>      C
+#+END_SRC
+
+The first variable, name, is already a column and should remain as it is.
+The headers of the last five columns, class1 through class5, are all different
+values of what should be a class variable. The values in the test column,
+midterm and final, should each be its own variable containing the respective
+grades for each student.
+
+The first stage is to gather class1 through class5 into a variable,
+discarding any rows that would have NA's in them.
+
+#+BEGIN_SRC
+my_data_frame %>%
+  gather( class, grade, class1:class5 , na.rm = TRUE) %>%
+  print
+
+    name    test  class grade
+1  Sally midterm class1     A
+2  Sally   final class1     C
+3  Brian midterm class1     B
+4  Brian   final class1     B
+5   Jeff midterm class2     D
+6   Jeff   final class2     E
+7  Roger midterm class2     C
+8  Roger   final class2     A
+9  Sally midterm class3     B
+10 Sally   final class3     C
+11 Karen midterm class3     C
+12 Karen   final class3     C
+13  Jeff midterm class4     A
+14  Jeff   final class4     C
+15 Karen midterm class4     A
+16 Karen   final class4     A
+17 Roger midterm class5     B
+18 Roger   final class5     A
+19 Brian midterm class5     A
+20 Brian   final class5     C
+#+END_SRC
+
+The next stage involves making the values in the test column variables that have
+the grade as their value. This can be done with the ~spread()~ function.
+
+#+BEGIN_SRC R
+my_data_frame %>%
+  gather(class, grade, class1:class5, na.rm = TRUE) %>%
+  spread(test , grade) %>%
+  print
+
+    name  class final midterm
+1  Brian class1     B       B
+2  Brian class5     C       A
+3   Jeff class2     E       D
+4   Jeff class4     C       A
+5  Karen class3     C       C
+6  Karen class4     A       A
+7  Roger class2     A       C
+8  Roger class5     A       B
+9  Sally class1     C       A
+10 Sally class3     C       B
+#+END_SRC
+
+Finally we want to remove the class prefix from the values in the class
+column. This can be done with the ~mutate()~ and ~extract_numeric()~ functions.
+
+#+BEGIN_SRC R
+my_data_frame %>%
+  gather(class, grade, class1:class5, na.rm = TRUE) %>%
+  spread(test, grade) %>%
+  mutate(class = extract_numeric(class)) %>%
+  print
+
+    name class final midterm
+1  Brian     1     B       B
+2  Brian     5     C       A
+3   Jeff     2     E       D
+4   Jeff     4     C       A
+5  Karen     3     C       C
+6  Karen     4     A       A
+7  Roger     2     A       C
+8  Roger     5     A       B
+9  Sally     1     C       A
+10 Sally     3     C       B
 #+END_SRC
