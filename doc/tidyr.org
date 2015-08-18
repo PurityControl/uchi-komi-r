@@ -220,7 +220,7 @@ my_data_frame %>%
 20 Brian   final class5     C
 #+END_SRC
 
-The next stage involve making the values in the test column variables that have
+The next stage involves making the values in the test column variables that have
 the grade as their value. This can be done with the ~spread()~ function.
 
 #+BEGIN_SRC R
@@ -242,7 +242,7 @@ my_data_frame %>%
 10 Sally class3     C       B
 #+END_SRC
 
-Finally we want to remove the class prefixe from the values in the class
+Finally we want to remove the class prefix from the values in the class
 column. This can be done with the ~mutate()~ and ~extract_numeric()~ functions.
 
 #+BEGIN_SRC R
