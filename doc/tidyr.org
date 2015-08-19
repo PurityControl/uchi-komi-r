@@ -264,3 +264,67 @@ my_data_frame %>%
 9  Sally     1     C       A
 10 Sally     3     C       B
 #+END_SRC
+
+* Multi Observational Units in the same table
+
+#+BEGIN_SRC R
+    id  name sex class midterm final
+1  168 Brian   F     1       B     B
+2  168 Brian   F     5       A     C
+3  588 Sally   M     1       A     C
+4  588 Sally   M     3       B     C
+5  710  Jeff   M     2       D     E
+6  710  Jeff   M     4       A     C
+7  731 Roger   F     2       C     A
+8  731 Roger   F     5       B     A
+9  908 Karen   M     3       C     C
+10 908 Karen   M     4       A     A
+#+END_SRC
+
+The data above is an example of having multi observational units in the same
+table. Each student has a unique id as well as his or her sex.
+
+A hint that this problem exists is when data is repeated. In the data above
+some names and sex data are repeated when only the id is needed.
+
+This data can be split into two data frames to normalise the data.
+
+#+BEGIN_SRC R
+# Pulling out id, name and sex requires a select that is piped through
+# unique to remove duplicates.
+
+student_info <- my_data_frame %>%
+  select(id, name, sex) %>%
+  unique() %>%
+  print
+
+   id  name sex
+1 168 Brian   F
+3 588 Sally   M
+5 710  Jeff   M
+7 731 Roger   F
+9 908 Karen   M
+
+# The other columns are unique elements so just need selected into a new
+# data frame
+
+gradebook <- my_data_frame %>%
+  select(id, class, midterm, final) %>%
+  print
+
+    id class midterm final
+1  168     1       B     B
+2  168     5       A     C
+3  588     1       A     C
+4  588     3       B     C
+5  710     2       D     E
+6  710     4       A     C
+7  731     2       C     A
+8  731     5       B     A
+9  908     3       C     C
+10 908     4       A     A
+#+END_SRC
+
+Relational theory still applies so, as we would with a database, we need a
+column to tie the two tables together. In this case it is the id column.
+
