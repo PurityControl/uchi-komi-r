@@ -406,7 +406,7 @@ Source: local data frame [6 x 10]
 ...
 #+END_SRC
 
-firs we remove the totals as they can be added back later as a
+First we remove the totals as they can be added back later as a
 calculated column
 
 #+BEGIN_SRC R
