@@ -1,0 +1,7 @@
+#+TITLE: Retrospective for even fibs
+
+Feels a little awkward not sure if this is idiomatic R or whether there
+is a better way.
+Like the use of vector filtering through boolean logic to filter out
+results.
+
