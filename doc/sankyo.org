@@ -1,1 +1,9 @@
 #+TITLE: Dai-sankyo (Group 3) - Resources / CheatSheets
+
+* R Cheat Sheets
+
+Cran has 2 R cheat sheet reference cards.
+
+[[https://cran.r-project.org/doc/contrib/Short-refcard.pdf][Version 1]]
+[[https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf][Version 2]]
+
