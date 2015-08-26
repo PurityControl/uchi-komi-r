@@ -22,7 +22,7 @@ year(this_day)
 [1] 2015
 
 month(this_day)
-[1] 08
+[1] 8
 
 day(this_day)
 [1] 26
