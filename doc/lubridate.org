@@ -1,0 +1,38 @@
+#+TITLE: Dates and Times with Lubridate
+
+Information set out here is heavily borrowed from the Swirl package
+Getting and Cleaning Data.
+
+* Load the package and get help
+
+#+BEGIN_SRC R
+library(lubridate)
+help(package = lubridate)
+#+END_SRC
+
+* Dates
+
+get todays date with the ~today()~ function.
+
+#+BEGIN_SRC R
+this_day <- today()
+[1] "2015-08-26"
+
+year(this_day)
+[1] 2015
+
+month(this_day)
+[1] 8
+
+day(this_day)
+[1] 26
+
+wday(this_day)
+[1] 4
+# where 1 = Sunday, 2 = Monday, 3 = Tuesday, etc
+
+wday(this_day, TRUE)
+[1] Wed
+Levels: Sun < Mon < Tues < Wed < Thurs < Fri < Sat
+
+#+END_sRC
