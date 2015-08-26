@@ -2,3 +2,4 @@
 
 - [[file:dplyr.org][Manipulating Data with dpylr]]
 - [[file:tidyr.org][Manipulating Data with tidyr]]
+- [[file:lubridate.org][Dates and Times with Lubridate]]
