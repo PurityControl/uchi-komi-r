@@ -36,3 +36,78 @@ wday(this_day, TRUE)
 Levels: Sun < Mon < Tues < Wed < Thurs < Fri < Sat
 
 #+END_sRC
+
+
+* DateTimes
+
+Lubridate also handles date-times.
+
+#+BEGIN_SRC R
+this_moment <- now()
+[1] "2015-08-26 13:43:37 BST"
+
+# it has all the functions of time above
+# addtionally it has
+
+hour(this_moment)
+[1] 13
+
+minute(this_moment)
+[1] 43
+
+#+END_SRC
+
+Lubridate offers a variety of functions for
+parsing date-times.
+
+These functions take the form of ymd(),
+dmy(), hms(), ymd_hms(), etc., where each letter in the name
+of the function stands for the location of years (y), months
+(m), days (d), hours (h), minutes (m), and/or seconds (s) in
+the date-time being read in.
+
+#+BEGIN_SRC R
+my_date <- ymd("1989-05-17")
+[1] "1989-05-17 UTC
+
+class(my_date)
+[1] "POSIXct" "POSIXt" 
+
+#lubridate can figure out many different date-time formats
+
+ymd("1989 May 17")
+[1] "1989-05-17 UTC"
+
+mdy("March 12, 1975")
+[1] "1975-03-12 UTC"
+
+dmy(25081985)
+[1] "1985-08-25 UTC"
+
+# it generates an error message when it fails to parse properly
+ymd("192012")
+[1] NA
+Warning message:
+All formats failed to parse. No formats found. 
+
+# dashes will help lubridate in such an instance
+ymd("1920-1-2")
+[1] "1920-01-02 UTC"
+
+# lubridate can also parse date-times
+ymd_hms("2014-08-23 17:23:02")
+[1] "2014-08-23 17:23:02 UTC"
+
+# or parse just a time
+hms("03:22:14")
+[1] "3H 22M 14S"
+
+# lubridate handles vectors of dates in much the same way
+dt2
+[1] "2014-05-14" "2014-09-22" "2014-07-1"1
+
+ymd(dt2)
+[1] "2014-05-14 UTC" "2014-09-22 UTC" "2014-07-11 UTC"
+
+#+END_SRC
+
