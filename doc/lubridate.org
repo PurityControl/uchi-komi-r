@@ -37,7 +37,6 @@ Levels: Sun < Mon < Tues < Wed < Thurs < Fri < Sat
 
 #+END_sRC
 
-
 * DateTimes
 
 Lubridate also handles date-times.
@@ -110,4 +109,62 @@ ymd(dt2)
 [1] "2014-05-14 UTC" "2014-09-22 UTC" "2014-07-11 UTC"
 
 #+END_SRC
+
+* Updating
+
+Lubridate can modify times too.
+
+#+BEGIN_SRC R
+update(this_moment, hours = 8, minutes = 34, seconds = 55)
+[1] "2015-08-26 08:34:55 BST"
+
+# this does not chane the this_moment variable
+# if you wanted this you would have to reassign the output to that variable
+
+#+END_SRC
+
+* Examples
+
+#+BEGIN_SRC R
+nyc <- now("America/New_York")
+[1] "2015-08-26 10:01:09 EDT"
+
+depart <- nyc + days(2)
+[1] "2015-08-28 10:20:19 EDT"
+
+depart <- update(depart, hours = 17, minutes = 34)
+[1] "2015-08-28 17:34:19 EDT"
+
+arrive = depart + hours(15) + minutes(50)
+[1] "2015-08-29 09:24:19 EDT"
+
+arrive <- with_tz(arrive, "Asia/Hong_Kong")
+[1] "2015-08-29 21:24:19 HKT"
+
+last_time <- mdy("June 17, 2008", tz = "Singapore")
+[1] "2008-06-17 SGT"
+
+how_long <- new_interval(last_time, arrive)
+[1] 2008-06-17 SGT--2015-08-29 21:24:19 SGT
+
+as.period(how_long)
+[1] "7y 2m 12d 21H 24M 19.0738871097565S"
+Warning message:
+In Ops.factor(left, right) : '-' not meaningful for factors
+
+#+END_SRC
+
+This is where things get a little tricky. Because of things
+like leap years, leap seconds, and daylight savings time, the
+length of any given minute, day, month, week, or year is
+relative to when it occurs. In contrast, the length of a
+second is always the same, regardless of when it occurs.
+
+To address these complexities, the authors of lubridate
+introduce four classes of time related objects: instants,
+intervals, durations, and periods. These topics are beyond
+the scope of this lesson, but you can find a complete
+discussion in the 2011 Journal of Statistical Software paper
+titled 'Dates and Times Made Easy with lubridate'.
+
 
