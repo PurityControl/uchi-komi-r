@@ -227,6 +227,52 @@ paste(LETTERS, 1:4, sep = "-")
 # vector by the paste() function.
 #+END_SRC
 
+* Missing Values
+
+In R a missing value or one that is not available is represented by ~NA~
+
+Any operation involving ~NA~ generally yields ~NA~ as the result.
+
+#+BEGIN_SRC R
+x <- c(44, NA, 5 , NA)
+
+x * 3
+[1] 132  NA  15  NA
+#+END_SRC
+
+Checking for NA using == yields NA regardless of the value compared.
+
+Therefore, use ~is.na()~ to check for NA fields.
+
+#+BEGIN_SRC R
+x == NA
+[1] NA  NA  NA  NA
+
+is.na(x)
+[1] TRUE  FALSE  TRUE  FALSE  
+#+END_SRC
+
+To find the number of ~TRUES~ in a list of booleans take advantage of
+the fact that ~false = 0~ and ~true = 1~. Use the sum function to
+give the number of TRUES.
+
+#+BEGIN_SRC R
+sum(is.na(x))
+
+[1] 2
+#+END_SRC
+
+Another type of missing value is ~NaN~ which stands for not a number.
+
+#+BEGIN_SRC R
+0 / 0
+[1] NaN
+
+Inf - Inf
+[1] NaN
+#+END_SRC R
+
+
 * Subsetting and Vectors
 
 Subsetting is selecting the parts of a vector you are interested in.
