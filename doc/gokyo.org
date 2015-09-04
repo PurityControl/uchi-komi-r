@@ -445,3 +445,149 @@ or equal to two.
 =all()= returns true if all of the elelement in the vector expression are true.
 
 
+* Functions
+
+Functions are made by using the ~function~ keyword and giving ~function~ a
+parameter list and a block. The result of the last statement in the block
+is the return value of the function. If you do not want the function to be
+anonymous you will need to assign it to a variable.
+
+#+BEGIN_SRC R
+my_mean <- function(my_vector) {
+  sum(my_vector) / length(my_vector)
+}
+#+END_SRC
+
+** Default values 
+
+Argmuents can be given default values
+
+#+BEGIN_SRC R
+increment <- function(number, by = 1){
+  number + by
+}
+#+END_SRC
+
+When calling a function you can explicitly name the parameters, in which case
+position of the arguments does not matter.
+
+#+BEGIN_SRC R
+remainder <- function(num, divisor=2) {
+  num %% divisor
+}
+
+remainder(divisor=3, num=11)
+#+END_SRC
+
+you can partially match arguments and pass in unnamed arguments and R will
+try its hardest to work out what you mean, but this is bad practice.
+
+#+BEGIN_SRC R
+remainder(11, div=3)
+#+END_SRC
+
+* Querying a functions arguments
+
+You can ask a function for its arguments using the ~args~ function.
+
+#+BEGIN_SRC R
+args(remainder)
+function (num, divisor = 2) 
+NULL
+#+END_SRC
+
+The above highlights that functions can be used as arguments to other functions.
+
+#+BEGIN_SRC R
+evaluate <- function(func, dat){
+  func(dat) 
+}
+
+evaluate(function(x){x[1]}, c(8, 4, 0))
+[1] 8
+#+END_SRC
+
+
+
+* Elipses arguments
+
+The ~...~ argument is a special argument in R. It means a variable number
+of arguments. If ~...~ is used in a function declaration all subsequent
+arguments must have default values.
+
+#+BEGIN_SRC R
+telegram <- function(...) {
+  paste("START", ..., "STOP")
+}
+
+telegram("you", "have", "to", "be", "pulling", "on", "my", "leg")
+[1] "START you have to be pulling on my leg STOP"
+#+END_SRC
+
+
+#+BEGIN_SRC R
+# Let's explore how to "unpack" arguments from an ellipses when you use the
+# ellipses as an argument in a function. Below is an example function that
+# is supposed to add two explicitly named arguments called alpha and beta.
+# 
+ add_alpha_and_beta <- function(...){
+   # First we must capture the ellipsis inside of a list
+   # and then assign the list to a variable. Let's name this
+   # variable 'args'.
+
+   args <- list(...)
+
+   # We're now going to assume that there are two named arguments within args
+   # with the names 'alpha' and 'beta'. We can extract named arguments from
+   # the args list by used the name of the argument and double brackets. The
+   # 'args' variable is just a regular list after all!
+   
+   alpha <- args[[[["alpha"]]]]
+   beta  <- args[[[["beta"]]]]
+
+   # Then we return the sum of alpha and beta.
+
+   alpha + beta 
+ }
+#+END_SRC
+
+This can be used to create a madlibs function
+
+#+BEGIN_SRC R
+mad_libs <- function(...){
+  # first argument unpacking
+  args <- list(...)
+  place <- args[[[["place"]]]]
+  adjective <- args[[[["adjective"]]]]
+  noun <- args[[[["noun"]]]]
+
+  # then the function body 
+  paste("News from", place, "today where", adjective, "students took to the streets in protest of the new", noun, "being installed on campus.")
+}
+
+mad_libs(noun = "apple", place = "castle", adjective = "sweaty")
+[1] "News from castle today where sweaty students took to the streets in protest of the new apple being installed on campus."
+#+END_SRC
+
+* Binary operators and infix notation
+
+You can define your own binary operators and then use them in infix notation.
+
+User-defined binary operators have the following syntax:
+
+~%[whatever]%~ 
+
+where ~[whatever]~ represents any valid variable name.
+
+for example.
+
+#+BEGIN_SRC R
+# NOTICE THE QUOTATION MARKS !!!
+"%mult_add_one%" <- function(left, right){
+  left * right + 1
+}
+
+4 %mult_add_one% 5
+[1] 21
+#+END_SRC
+
