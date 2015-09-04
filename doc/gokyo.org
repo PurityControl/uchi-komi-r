@@ -542,8 +542,8 @@ telegram("you", "have", "to", "be", "pulling", "on", "my", "leg")
    # the args list by used the name of the argument and double brackets. The
    # 'args' variable is just a regular list after all!
    
-   alpha <- args[[[["alpha"]]]]
-   beta  <- args[[[["beta"]]]]
+   alpha <- args[["alpha"]]
+   beta  <- args[["beta"]]
 
    # Then we return the sum of alpha and beta.
 
@@ -557,9 +557,9 @@ This can be used to create a madlibs function
 mad_libs <- function(...){
   # first argument unpacking
   args <- list(...)
-  place <- args[[[["place"]]]]
-  adjective <- args[[[["adjective"]]]]
-  noun <- args[[[["noun"]]]]
+  place <- args[["place"]]
+  adjective <- args[["adjective"]]
+  noun <- args[["noun"]]
 
   # then the function body 
   paste("News from", place, "today where", adjective, "students took to the streets in protest of the new", noun, "being installed on campus.")
