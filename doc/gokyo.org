@@ -69,6 +69,15 @@ If the method being queried is a keyword then it will need to be quoted.
 Using ~??~ will search the documentation for all help that has the search
 term in its content and return a list of search topics that match.
 
+~vignette()~ will list all vignettes available to R.
+
+#+BEGIN_SRC R
+vignette()
+# to get the vignette on a particular topic call vingette with the topic
+# name in quotes
+vignette("databases")
+#+END_SRC
+
 * Workspace and Files
 ~getwd()~ returns the current working directory
 
