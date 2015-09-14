@@ -1,0 +1,7 @@
+#+TITLE: Retrospective for largest prime factor
+
+Quick solution leaning on external libraries in the 'numbers' library.
+Another solution making custom prime functions may be a worthwhile
+exercise
+
+
