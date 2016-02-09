@@ -8,10 +8,11 @@ shinyUI(fluidPage(
         min = 0, max = 5000, value = 1000
       )
     ),
-    
+
     mainPanel(
       p("The sum of all the multiples up to the limit is:"),
       textOutput("multiples")
     )
   )
 ))
+
