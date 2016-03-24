@@ -1,0 +1,49 @@
+---
+title: "Largest Prime Factor"
+output: html_document
+---
+
+## Largest Prime Factor
+
+### Problem Description
+
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143 ?
+
+_(answer 6857)_
+
+### Solution
+
+Use the numbers library to get the prime factors.
+
+```{r}
+require(numbers)
+largest_prime_factor <- function(num) {
+  max(primeFactors(num))
+}
+```
+
+### Tests
+
+Execute a euler test for the function:
+If the test fails knitter won't compile to html.
+
+```{r}
+library(testthat)
+test_that("check euler question", {
+  expect_equal(6857, largest_prime_factor(600851475143))
+})
+```
+
+## Retrospective
+
+First attempt at implementing a euler problem as Rmarkdown.
+
+Testing could be better in the sense that Runit seems to need to be give a
+filename or regex to parse tests from, making inline testing difficult.
+Testthat seems more useful but does not have the option to give any output
+for inline tests when they pass. This would be useful in a Markdown document
+to demonstrate the passing tests.
+
+
