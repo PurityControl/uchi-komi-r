@@ -1,1 +1,13 @@
 #+TITLE: Dai-ikkyo (group 1) - Setting up the environment
+
+* RStudion and Rmarkdown
+
+More details on using RStudion and Rmarkdown can be found at the
+[[https://www.rstudio.com][rstudio website]],
+
+** Exporting PDF's from Rmarkdown
+
+If you want to create pdf's from your Rmarkdown files you will neeed
+to have texlive installed.
+
+This is described in the emacs docs in the [[https://github.com/PurityControl/config-files/tree/master/docs/emacs][config files repo]].
