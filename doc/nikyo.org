@@ -30,3 +30,9 @@ You can get the dmg file [[http://xquartz.macosforge.org/landing/][here]].
 
 Once XQuartz is installed you should be able to use RUnit.
 
+* TestThat
+
+TestThat is another framework that makes it easier to test in line if
+you need to.
+
+There is a [[https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf][pdf]] by the author describing how to use it.
