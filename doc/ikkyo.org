@@ -1,6 +1,6 @@
 #+TITLE: Dai-ikkyo (group 1) - Setting up the environment
 
-* RStudion and Rmarkdown
+* RStudio and Rmarkdown
 
 More details on using RStudion and Rmarkdown can be found at the
 [[https://www.rstudio.com][rstudio website]],
